@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIardz4IyTmkiZzGEr7R3P8wS1RxPpKNedaCM4Io7ZXx4_9s9hV-AZbShucNuv-rT4/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1aqZPW7gYEjBxP8YvGH7vTj86Bv6GldcS9j1XWRohgLqm7mUFGk4jFAKs4AC1UdgA/exec';
 
 const BACKGROUNDS = [
   'https://s.fotora.ru/b5e95ad3cace21f3.png',
