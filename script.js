@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1aqZPW7gYEjBxP8YvGH7vTj86Bv6GldcS9j1XWRohgLqm7mUFGk4jFAKs4AC1UdgA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIardz4IyTmkiZzGEr7R3P8wS1RxPpKNedaCM4Io7ZXx4_9s9hV-AZbShucNuv-rT4/exec';
 
 const BACKGROUNDS = [
   'https://s.fotora.ru/b5e95ad3cace21f3.png',
@@ -11,11 +11,13 @@ const BACKGROUNDS = [
 let allSheetsData = [];
 let currentPage = 0;
 
+// 1. Инициализация фона и меню настроек
 function initSettings() {
   const settingsBtn = document.getElementById('settings-btn');
   const settingsMenu = document.getElementById('settings-menu');
   const bgBtns = document.querySelectorAll('.bg-btn');
 
+  // По умолчанию ставим Фон 5 (индекс 4)
   let savedBg = localStorage.getItem('selectedBg');
   if (savedBg === null) {
     savedBg = 4; 
@@ -52,6 +54,7 @@ function applyBackground(index) {
   }
 }
 
+// 2. Загрузка данных
 async function loadData() {
   const contentArea = document.getElementById('content-area');
   
@@ -75,11 +78,12 @@ async function loadData() {
     renderPage();
     
   } catch (error) {
-    contentArea.innerHTML = '<div style="padding: 40px; text-align: center;">Ошибка загрузки данных. Проверьте доступ к скрипту.</div>';
+    contentArea.innerHTML = '<div style="padding: 40px; text-align: center;">Ошибка загрузки данных.</div>';
     document.getElementById('table-container').classList.add('loaded');
   }
 }
 
+// 3. Отрисовка страницы
 function renderPage() {
   const contentArea = document.getElementById('content-area');
   const pageTitle = document.getElementById('page-title');
@@ -136,6 +140,7 @@ function renderPage() {
   pageIndicator.textContent = (currentPage + 1) + ' / ' + allSheetsData.length;
 }
 
+// 4. Обработчики кнопок
 document.getElementById('btn-prev').addEventListener('click', () => {
   if (currentPage > 0) {
     currentPage--;
@@ -160,6 +165,7 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+// 5. Запуск при загрузке
 document.addEventListener('DOMContentLoaded', () => {
   initSettings();
   loadData();
