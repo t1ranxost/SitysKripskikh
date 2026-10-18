@@ -11,13 +11,11 @@ const BACKGROUNDS = [
 let allSheetsData = [];
 let currentPage = 0;
 
-// 1. Инициализация фона и меню настроек
 function initSettings() {
   const settingsBtn = document.getElementById('settings-btn');
   const settingsMenu = document.getElementById('settings-menu');
   const bgBtns = document.querySelectorAll('.bg-btn');
 
-  // По умолчанию ставим Фон 5 (индекс 4)
   let savedBg = localStorage.getItem('selectedBg');
   if (savedBg === null) {
     savedBg = 4; 
@@ -54,7 +52,6 @@ function applyBackground(index) {
   }
 }
 
-// 2. Загрузка данных
 async function loadData() {
   const contentArea = document.getElementById('content-area');
   
@@ -78,12 +75,11 @@ async function loadData() {
     renderPage();
     
   } catch (error) {
-    contentArea.innerHTML = '<div style="padding: 40px; text-align: center;">Ошибка загрузки данных.</div>';
+    contentArea.innerHTML = '<div style="padding: 40px; text-align: center;">Ошибка загрузки данных. Проверьте доступ к скрипту.</div>';
     document.getElementById('table-container').classList.add('loaded');
   }
 }
 
-// 3. Отрисовка страницы
 function renderPage() {
   const contentArea = document.getElementById('content-area');
   const pageTitle = document.getElementById('page-title');
@@ -140,7 +136,6 @@ function renderPage() {
   pageIndicator.textContent = (currentPage + 1) + ' / ' + allSheetsData.length;
 }
 
-// 4. Обработчики кнопок
 document.getElementById('btn-prev').addEventListener('click', () => {
   if (currentPage > 0) {
     currentPage--;
@@ -165,7 +160,6 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-// 5. Запуск при загрузке
 document.addEventListener('DOMContentLoaded', () => {
   initSettings();
   loadData();
